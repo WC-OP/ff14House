@@ -2,25 +2,33 @@ name: daily
 
 on:
   schedule:
-    - cron: '0 0 * * *'
+    - cron: "0 0 * * *"
   workflow_dispatch:
-
 
 jobs:
   daily-python-script:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Check out the code
         uses: actions/checkout@v2
-        
+
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.10.8' 
-        
+          python-version: "3.10.8"
+
       - name: Install dependencies
-        run: pip install -r requirements.txt 
-        
+        run: pip install -r requirements.txt
+
       - name: Run Python script
-        run: python main.py 
+        run: >
+          python main.py 
+          --uuid ${{secrets.UUID}} 
+          --cookie ${{secrets.COOKIE}} 
+          --sender_email ${{secrets.SENDER_EMAIL}}  
+          --sender_password ${{secrets.SENDER_PASSWORD}} 
+          --recipient_email ${{secrets.RECIPIENT_EMAIL}}
+          --port ${{secrets.PORT}}
+          --smtp ${{secrets.SMTP}}
+          --serverChan ${{secrets.SERVER_CHAN}}
