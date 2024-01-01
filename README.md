@@ -24,17 +24,20 @@
 
 Settings -> Secrets and variables -> Actions -> (绿色的按钮) New repository secret  
 
-在Name栏中填写变量名称 , 在Secret中填写变量值 , 变量值请直接填写 , 无需加引号
+在Name栏中填写变量名称 , 在Secret中填写变量值 
 
-分别建立以下变量
-- UUID                #查询用户的uuid , 格式为[1001,1002] , 需要带上中括号,多个账号使用英文逗号分隔
-- COOKIE              #石之家的Cookie 
-- SMTP                #smtp服务器地址 , QQ邮箱为smtp.qq.com
-- PORT                #smtp接口 , QQ邮箱为587
-- SENDER_EMAIL        #发件人邮箱账户
-- SENDER_PASSWORD     #smtp授权码 , 下文有QQ邮箱授权码获取途径
-- RECIPIENT_EMAIL     #收件人邮箱账户
-- SERVERCHAN          #server酱的key
+需设置的 Secrets 包括（如果不需要其值可以为空，即 `''`，但必须设置）：
+
+|      名称      | 含义                                                               |
+| :-------------: | ------------------------------------------------------------------|
+|      UUID      | 用户的uuid，多位以**,**分隔：10001,10022,10003                      |
+|     COOKIE     | 石之家Cookies，建议以单引号''包围，避免转义带来的问题，即'cookies'   |
+|  SENDER_EMAIL  | 发件人邮箱                                                          |
+| SENDER_PASSWORD | 发件人邮箱密码，下文有QQ邮箱授权码获取途径                          |
+| RECIPIENT_EMAIL | 收件人邮箱                                                         |
+|      PORT      | SMTP服务接口 , QQ邮箱为587                                          |
+|      SMTP      | SMTP服务器地址 , QQ邮箱为smtp.qq.com                                |
+|   SERVER_CHAN   | Server酱密钥                                                       |
 
 
 ## 使用明文config.ini
