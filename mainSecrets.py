@@ -66,7 +66,7 @@ config.read("config.ini", encoding="utf-8")
 # 获取配置项的值
 
 # 石之家配置文件
-uuid = eval(os.environ['UUID'])
+uuid = os.environ['UUID'].split(",")
 cookie = os.environ['COOKIE']
 # server酱的key
 serverChen = os.environ['SERVERCHAN']
