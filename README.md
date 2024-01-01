@@ -30,7 +30,7 @@ Settings -> Secrets and variables -> Actions -> (绿色的按钮) New repository
 
 |      名称      | 含义                                                               |
 | :-------------: | ------------------------------------------------------------------|
-|      UUID      | 用户的uuid，多位以 , 分隔：10001,10022,10003                      |
+|      UUID      | 用户的uuid，多位以`,`分隔：10001,10022,10003                      |
 |     COOKIE     | 石之家Cookies，建议以单引号''包围，避免转义带来的问题，即'cookies'   |
 |  SENDER_EMAIL  | 发件人邮箱                                                          |
 | SENDER_PASSWORD | 发件人邮箱密码，下文有QQ邮箱授权码获取途径                          |
