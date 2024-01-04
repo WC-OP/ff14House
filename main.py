@@ -47,6 +47,7 @@ def get_follow(uuid):
       sleep(2)
     else:
       info = "查询失败 , 请检查cookie是否过期"
+      print(info)
       try:
         notify.send_email(
             sender_email, sender_password, recipient_email, smtp, port, info
@@ -102,6 +103,7 @@ def getHouseRemainDay(uuid, cookie):
       print(data["data"]["characterDetail"][0]["character_name"] + "的房子没到期")
   else:
     info = "查询失败 , 请检查cookie是否过期"
+    print(info)
     try:
       notify.send_email(
           sender_email, sender_password, recipient_email, smtp, port, info
