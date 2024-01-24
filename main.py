@@ -25,13 +25,18 @@ class Config:
 def get_follow(uuid):
   page = 1
   params = lambda p: {"uuid": uuid, "limit": 10, "page": p}
-  cookies = {"Cookie": cookie}
+  headers = {
+      "User-Agent":
+          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+      "Cookie":
+          cookie
+  }
   uuid_list = []
 
   while page < 100:
     response = requests.get(
         "https://apiff14risingstones.web.sdo.com/api/home/userRelation/followList",
-        cookies=cookies,
+        headers=headers,
         params=params(page),
         timeout=40
     )
@@ -66,11 +71,15 @@ def get_follow(uuid):
 
 def getHouseRemainDay(uuid, cookie):
   params = {"uuid": uuid, "limit": 10, "page": 1}
-  cookies = {"Cookie": cookie}
-
+  headers = {
+      "User-Agent":
+          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+      "Cookie":
+          cookie
+  }
   response = requests.get(
       "https://apiff14risingstones.web.sdo.com/api/home/userInfo/getUserInfo",
-      cookies=cookies,
+      headers=headers,
       params=params,
       timeout=40
   )
@@ -79,7 +88,9 @@ def getHouseRemainDay(uuid, cookie):
 
   if data["code"] == 10000:
     if "house_remain_day" in data["data"]["characterDetail"][0]:
-      if "*" in data["data"]["characterDetail"][0]["house_remain_day"]:
+      if "*" in data["data"]["characterDetail"][0][
+          "house_remain_day"] or "S" in data["data"]["characterDetail"][0][
+              "house_info"]:
         return
       info = (
           "用户名:" + data["data"]["characterDetail"][0]["character_name"] +
