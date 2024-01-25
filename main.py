@@ -40,7 +40,12 @@ def get_follow(uuid):
         params=params(page),
         timeout=40
     )
-    data = json.loads(response.text)
+    try:
+      data = json.loads(response.text)
+    except json.decoder.JSONDecodeError:
+      print(response.text)
+      page += 1
+      continue
     if data["code"] == 10000:
       if len(data["data"]["rows"]) > 0:
         page += 1
@@ -49,7 +54,7 @@ def get_follow(uuid):
       for player in data["data"]["rows"]:
         uuid_list += [player["uuid"]]
       print(f"累计查询好友数量：{len(uuid_list)}")
-      sleep(2)
+      sleep(6)
     else:
       info = "查询失败 , 请检查cookie是否过期"
       print(info)
@@ -83,8 +88,11 @@ def getHouseRemainDay(uuid, cookie):
       params=params,
       timeout=40
   )
-
-  data = json.loads(response.text)
+  try:
+    data = json.loads(response.text)
+  except json.decoder.JSONDecodeError:
+    print(response.text)
+    return
 
   if data["code"] == 10000:
     if "house_remain_day" in data["data"]["characterDetail"][0]:
@@ -92,7 +100,7 @@ def getHouseRemainDay(uuid, cookie):
         return
       info = (
           "用户名:" + data["data"]["characterDetail"][0]["character_name"] +
-          "到期时间:" + data["data"]["characterDetail"][0]["house_remain_day"]
+          "\n到期时间:" + data["data"]["characterDetail"][0]["house_remain_day"]
       )
       print(info)
 
