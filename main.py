@@ -88,9 +88,7 @@ def getHouseRemainDay(uuid, cookie):
 
   if data["code"] == 10000:
     if "house_remain_day" in data["data"]["characterDetail"][0]:
-      if "*" in data["data"]["characterDetail"][0][
-          "house_remain_day"] or "S" in data["data"]["characterDetail"][0][
-              "house_info"]:
+      if "*" in data["data"]["characterDetail"][0]["house_remain_day"]:
         return
       info = (
           "用户名:" + data["data"]["characterDetail"][0]["character_name"] +
