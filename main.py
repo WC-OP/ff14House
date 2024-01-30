@@ -179,17 +179,17 @@ for i in uuid:
   uuid_list = get_follow(i)
   uuid_list = [i] + uuid_list
   idx = 0
-  for uid in  uuid_list:
-    idx +=1
-    send_flag = send_flag and getHouseRemainDay(uid, cookie)
+  for uid in uuid_list:
+    idx += 1
+    send_flag = getHouseRemainDay(uid, cookie) and send_flag
     sleep(5)
-    if  idx % 20 ==0:
+    if idx % 20 == 0:
       sleep(40)
-    
+
 if not send_flag:
   try:
-      notify.send_email(
-          sender_email, sender_password, recipient_email, smtp, port, "一切正常，over"
-      )
+    notify.send_email(
+        sender_email, sender_password, recipient_email, smtp, port, "一切正常，over"
+    )
   except Exception as e:
-      print("发生异常:", e)
+    print("发生异常:", e)
