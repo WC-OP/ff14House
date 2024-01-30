@@ -92,12 +92,12 @@ def getHouseRemainDay(uuid, cookie):
     data = json.loads(response.text)
   except json.decoder.JSONDecodeError:
     print(response.text)
-    return
+    return False
 
   if data["code"] == 10000:
     if "house_remain_day" in data["data"]["characterDetail"][0]:
       if "*" in data["data"]["characterDetail"][0]["house_remain_day"]:
-        return
+        return False
       info = (
           "用户名:" + data["data"]["characterDetail"][0]["character_name"] +
           "\n到期时间:" + data["data"]["characterDetail"][0]["house_remain_day"]
@@ -116,6 +116,8 @@ def getHouseRemainDay(uuid, cookie):
       except Exception as e:
         print("发生异常:", e)
 
+      return True
+
     else:
       print(data["data"]["characterDetail"][0]["character_name"] + "的房子没到期")
   else:
@@ -132,6 +134,7 @@ def getHouseRemainDay(uuid, cookie):
       notify.send_serverChan(serverChen, info)
     except Exception as e:
       print("发生异常:", e)
+  return False
 
 
 parser = simple_parsing.ArgumentParser()
@@ -171,9 +174,22 @@ else:
   smtp = config.get("notifyMail", "smtp")
   port = config.get("notifyMail", "port")
 
+send_flag = False
 for i in uuid:
   uuid_list = get_follow(i)
-  uuid_list += [i]
-  for uid in uuid_list:
-    getHouseRemainDay(uid, cookie)
-    sleep(1)
+  uuid_list = [i] + uuid_list
+  idx = 0
+  for uid in  uuid_list:
+    idx +=1
+    send_flag = send_flag and getHouseRemainDay(uid, cookie)
+    sleep(5)
+    if  idx % 20 ==0:
+      sleep(40)
+    
+if not send_flag:
+  try:
+      notify.send_email(
+          sender_email, sender_password, recipient_email, smtp, port, "一切正常，over"
+      )
+  except Exception as e:
+      print("发生异常:", e)
