@@ -6,11 +6,14 @@ import notify
 
 def getHouseRemainDay(uuid, cookie):
     params = {"uuid": uuid, "limit": 10, "page": 1}
-    cookies = {"Cookie": cookie}
 
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36",
+        "Cookie": cookie,
+    }
     response = requests.get(
         "https://apiff14risingstones.web.sdo.com/api/home/userInfo/getUserInfo",
-        cookies=cookies,
+        headers=headers,
         params=params,
     )
 

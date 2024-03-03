@@ -8,11 +8,13 @@ import time
 
 def getHouseRemainDay(uuid, cookie):
     params = {"uuid": uuid, "limit": 10, "page": 1}
-    cookies = {"Cookie": cookie}
-
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36",
+        "Cookie": cookie,
+    }
     response = requests.get(
         "https://apiff14risingstones.web.sdo.com/api/home/userInfo/getUserInfo",
-        cookies=cookies,
+        headers=headers,
         params=params,
     )
 
@@ -66,16 +68,16 @@ config.read("config.ini", encoding="utf-8")
 # 获取配置项的值
 
 # 石之家配置文件
-uuid = os.environ['UUID'].split(",")
-cookie = os.environ['COOKIE']
+uuid = os.environ["UUID"].split(",")
+cookie = os.environ["COOKIE"]
 # server酱的key
-serverChen = os.environ['SERVERCHAN']
+serverChen = os.environ["SERVERCHAN"]
 # 右键通知配置文件
-sender_email = os.environ['SENDER_EMAIL']
-sender_password = os.environ['SENDER_PASSWORD']
-recipient_email = os.environ['RECIPIENT_EMAIL']
-smtp = os.environ['SMTP']
-port = os.environ['PORT']
+sender_email = os.environ["SENDER_EMAIL"]
+sender_password = os.environ["SENDER_PASSWORD"]
+recipient_email = os.environ["RECIPIENT_EMAIL"]
+smtp = os.environ["SMTP"]
+port = os.environ["PORT"]
 
 
 for i in uuid:
