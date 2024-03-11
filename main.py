@@ -186,10 +186,10 @@ for i in uuid:
     if idx % 20 == 0:
       sleep(40)
 
-if not send_flag:
-  try:
-    notify.send_email(
-        sender_email, sender_password, recipient_email, smtp, port, "一切正常，over"
-    )
-  except Exception as e:
-    print("发生异常:", e)
+# if not send_flag:
+#   try:
+#     notify.send_email(
+#         sender_email, sender_password, recipient_email, smtp, port, "一切正常，over"
+#     )
+#   except Exception as e:
+#     print("发生异常:", e)
