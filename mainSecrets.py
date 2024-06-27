@@ -9,7 +9,7 @@ import time
 def getHouseRemainDay(uuid, cookie):
     params = {"uuid": uuid, "limit": 10, "page": 1}
     headers = {
-        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36",
+        "User-Agent": ua,
         "Cookie": cookie,
     }
     response = requests.get(
@@ -78,6 +78,7 @@ sender_password = os.environ["SENDER_PASSWORD"]
 recipient_email = os.environ["RECIPIENT_EMAIL"]
 smtp = os.environ["SMTP"]
 port = os.environ["PORT"]
+ua = os.environ["UA"]
 
 
 for i in uuid:
