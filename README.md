@@ -38,6 +38,7 @@ Settings -> Secrets and variables -> Actions -> (绿色的按钮) New repository
 |      PORT      | SMTP服务接口 , QQ邮箱为587                                          |
 |      SMTP      | SMTP服务器地址 , QQ邮箱为smtp.qq.com                                |
 |   SERVER_CHAN   | Server酱密钥                                                       |
+| UA | 获取石之家cookie时的浏览器的User-Agent |
 
 
 ## 使用明文config.ini
