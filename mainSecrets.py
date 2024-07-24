@@ -17,9 +17,11 @@ def getHouseRemainDay(uuid, cookie):
         headers=headers,
         params=params,
     )
-
-    data = json.loads(response.text)
-
+    try:
+        data = json.loads(response.text)
+    except Exception as e:
+        print("发生异常:", e)
+        data["code"] = 0
     if data["code"] == 10000:
         if "house_remain_day" in data["data"]["characterDetail"][0]:
             info = (
@@ -78,10 +80,7 @@ sender_password = os.environ["SENDER_PASSWORD"]
 recipient_email = os.environ["RECIPIENT_EMAIL"]
 smtp = os.environ["SMTP"]
 port = os.environ["PORT"]
-try:
-    ua = os.environ["UA"]
-except:
-    ua = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0"
+ua = os.environ["UA"]
 
 
 for i in uuid:

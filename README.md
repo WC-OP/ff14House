@@ -54,7 +54,7 @@ Settings -> Secrets and variables -> Actions -> (绿色的按钮) New repository
 + 石之家
   - 使用一个账号登录石之家后 , 尽量不要在别的地方登录这个账号 , 防止cookie被挤掉失效
 + server酱
-  - 打开server酱的网站<https://sct.ftqq.com/> , 获取key
+  - 打开[server酱](https://sct.ftqq.com/r/13201)的网站, 获取key
 + smtp授权码获取途径
   - 本人使用的是QQ邮箱 , 你可以选择使用其他邮箱
   - smtp授权码:登录网页版QQ邮箱->设置->账号->POP3/IMAP/SMTP/Exchange/CardDAV/CalDAV服务
