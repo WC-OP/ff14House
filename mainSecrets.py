@@ -21,6 +21,7 @@ def getHouseRemainDay(uuid, cookie):
         data = json.loads(response.text)
     except Exception as e:
         print("发生异常:", e)
+        print(response.text)
         data["code"] = 0
     if data["code"] == 10000:
         if "house_remain_day" in data["data"]["characterDetail"][0]:
