@@ -22,6 +22,7 @@ def getHouseRemainDay(userid):
     except Exception as e:
         print("发生异常:", e)
         print(response.text)
+        data = {}
         data["code"] = 0
     checkHouse(data)
 
